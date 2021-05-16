@@ -5,23 +5,151 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.jar.JarEntry;
 
 public class GameView extends JFrame {
+    JPanel panelTop;
+    static JButton backToMenu;
+    JButton btnPoland;
+    JButton Russia;
+    JButton England;
+    JButton Spain;
+    JButton France;
+    JButton Turkey;
+    JButton Norwey;
+    JButton Sweden;
+    JButton Romania;
 
     public GameView() {
-
-
-
-        setTitle("background test");
-        setSize(700,600);
+        panelTop = new JPanel();
+        createTopMenu();
+        JPanel panelMap = new JPanel();
+        panelMap.setBounds(20, 100, 700, 506);
+        panelMap.setBackground(Color.green);
+        panelMap.setLayout(new BorderLayout());
+        JLabel lmapImage = new JLabel(new ImageIcon("background.jpg"));
+        panelMap.add(lmapImage);
+        createButtonPoland();
+        createButtonRussia();
+        createButtonSpain();
+        createButtonFrance();
+        createButtonTurkey();
+        createButtonNorwey();
+        createButtonSweden();
+        createButtonRomania();
+        createButtonEngland();
+        add(panelMap);
+        add(panelTop);
+        setTitle("Koronavirus Anti Plague");
+        setSize(1200, 680);
         setLocationRelativeTo(null);
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
         setVisible(true);
+    }
 
-        JLabel background = new JLabel(new ImageIcon("/home/jan/Pulpit/Projekt/src/background.jpg"));
-        add(background);
-        background.setLayout(new FlowLayout());
+    public void createTopMenu() {
+        panelTop.setLayout(new FlowLayout());
+        panelTop.setBackground(new Color(666699));
+
+        JLabel lDays = new JLabel("Day of Epidemics:");
+        lDays.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        lDays.setForeground(Color.white);
+        JLabel lCases = new JLabel("Total Cases:");
+        lCases.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        lCases.setForeground(Color.white);
+        JLabel lWorldInfected = new JLabel("% of the world infected:");
+        lWorldInfected.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        lWorldInfected.setForeground(Color.white);
+        JLabel lVaccineProgres = new JLabel("Vaccine progress:");
+        lVaccineProgres.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        lVaccineProgres.setForeground(Color.white);
+        JLabel lCureProgress = new JLabel("Cure progress:");
+        lCureProgress.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        lCureProgress.setForeground(Color.white);
+        JLabel lmask = new JLabel(new ImageIcon("mask.png"));
+        lmask.setText(String.valueOf(Main.heathPoints));
+        lmask.setForeground(Color.white);
+        JLabel lStar = new JLabel(new ImageIcon("star.png"));
+        lStar.setText(String.valueOf(Main.Points));
+        lStar.setForeground(Color.white);
+        backToMenu = new JButton("Back to menu");
+        backToMenu.setForeground(Color.white);
+        backToMenu.setFont(new Font(null, Font.BOLD, 16));
+        backToMenu.setFocusable(false);
+        backToMenu.setBackground(Color.orange);
+        backToMenu.setPreferredSize(new Dimension(160, 25));
+        panelTop.add(backToMenu);
+        panelTop.add(lDays);
+        panelTop.add(lCases);
+        panelTop.add(lWorldInfected);
+        panelTop.add(lVaccineProgres);
+        panelTop.add(lCureProgress);
+        panelTop.add(lmask);
+        panelTop.add(lStar);
+    }
+
+    public void createButtonRussia() {
+        Russia = new JButton("Russia");
+        Russia.setBounds(550, 220, 85, 20);
+        Russia.setFocusable(false);
+        getContentPane().add(Russia);
+    }
+
+    public void createButtonRomania() {
+        Romania = new JButton("Romania");
+        Romania.setBounds(420, 455, 96, 20);
+        Romania.setFocusable(false);
+        getContentPane().add(Romania);
+    }
+
+    public void createButtonEngland() {
+        England = new JButton("England");
+        England.setBounds(180, 350, 92, 20);
+        England.setFocusable(false);
+        getContentPane().add(England);
+    }
+
+    public void createButtonPoland() {
+        btnPoland = new JButton("Poland");
+        btnPoland.setBounds(350, 380, 85, 20);
+        btnPoland.setFocusable(false);
+        getContentPane().add(btnPoland);
+    }
+
+    public void createButtonSpain() {
+        Spain = new JButton("Spain");
+        Spain.setBounds(145, 520, 85, 20);
+        Spain.setFocusable(false);
+        getContentPane().add(Spain);
+    }
+
+    public void createButtonFrance() {
+        France = new JButton("France");
+        France.setBounds(210, 445, 85, 20);
+        France.setFocusable(false);
+        getContentPane().add(France);
+    }
+
+    public void createButtonTurkey() {
+        Turkey = new JButton("Turkey");
+        Turkey.setBounds(510, 520, 85, 20);
+        Turkey.setFocusable(false);
+        getContentPane().add(Turkey);
+    }
+
+    public void createButtonNorwey() {
+        Norwey = new JButton("Norwey");
+        Norwey.setBounds(235, 240, 92, 20);
+        Norwey.setFocusable(false);
+        getContentPane().add(Norwey);
+    }
+
+    public void createButtonSweden() {
+        Sweden = new JButton("Sweden");
+        Sweden.setBounds(300, 280, 92, 20);
+        Sweden.setFocusable(false);
+        getContentPane().add(Sweden);
     }
 
 

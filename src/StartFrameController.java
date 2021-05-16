@@ -6,10 +6,10 @@ public class StartFrameController {
 
     StartFrame st = new StartFrame();
 
-    public StartFrameController(){
+    public StartFrameController() {
         st.btnExit.addActionListener(e -> {
             Object source = e.getSource();
-            if(source == st.btnExit){
+            if (source == st.btnExit) {
                 System.exit(0);
             }
         });
@@ -17,10 +17,10 @@ public class StartFrameController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
-                if(source == st.btnNewGame){
+                if (source == st.btnNewGame) {
                     st.dispose();
                     new LevelChooser();
-
+                    new GameView();
                 }
             }
         });
