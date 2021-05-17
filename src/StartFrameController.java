@@ -4,15 +4,20 @@ import java.awt.event.ActionListener;
 
 public class StartFrameController {
 
-    StartFrame st = new StartFrame();
 
-    public StartFrameController() {
+    public StartFrameController( ) {
+        Main.dayEpidemic = 0;
+        StartFrame st = new StartFrame();
+        moja m = new moja();
+        Thread t = new Thread(m);
+        t.start();
         st.btnExit.addActionListener(e -> {
             Object source = e.getSource();
             if (source == st.btnExit) {
                 System.exit(0);
             }
         });
+
         st.btnNewGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -19,15 +19,73 @@ public class GameView extends JFrame {
     JButton Norwey;
     JButton Sweden;
     JButton Romania;
-
+    Poland pl;
+    Norwey no;
+    Romania ro;
+    Russia ru;
+    Spain sp;
+    Sweden sw;
+    Turkey tu;
+    England en;
+    France fr;
+    JPanel tab1;
+    JPanel tab2;
+    JPanel tab3;
+    JLabel lab;
+    static JLabel lDays;
     public GameView() {
+        Poland pl = new Poland();
+        Norwey no = new Norwey();
+        Romania ro = new Romania();
+        Russia ru = new Russia();
+        Spain sp = new Spain();
+        Sweden sw = new Sweden();
+        Turkey tu = new Turkey();
+        England en = new England();
+        France fr = new France();
+
+        pl.setCases(0);
+        pl.setInfected(0);
+        pl.setPopulation(37846611);
+
+        no.setCases(0);
+        no.setInfected(0);
+        no.setPopulation(5421241);
+
+        ro.setCases(0);
+        ro.setInfected(0);
+        ro.setPopulation(19237691);
+
+        sp.setCases(0);
+        sp.setInfected(0);
+        sp.setPopulation(145934462);
+
+        sw.setCases(0);
+        sw.setInfected(0);
+        sw.setPopulation(10099265);
+
+
+        tu.setCases(0);
+        tu.setInfected(0);
+        tu.setPopulation(84339067);
+
+        en.setCases(0);
+        en.setInfected(0);
+        en.setPopulation(67886011);
+
+
+        fr.setCases(0);
+        fr.setInfected(0);
+        fr.setPopulation(65273511);
+
+
         panelTop = new JPanel();
         createTopMenu();
         JPanel panelMap = new JPanel();
         panelMap.setBounds(20, 100, 700, 506);
-        panelMap.setBackground(Color.green);
         panelMap.setLayout(new BorderLayout());
         JLabel lmapImage = new JLabel(new ImageIcon("background.jpg"));
+
         panelMap.add(lmapImage);
         createButtonPoland();
         createButtonRussia();
@@ -38,8 +96,32 @@ public class GameView extends JFrame {
         createButtonSweden();
         createButtonRomania();
         createButtonEngland();
+
+
+        tab1 = new JPanel();
+        tab1.setBackground(Color.orange);
+        lab = new JLabel();
+        lab.setText("Infected");
+        tab1.add(lab);
+        tab2 = new JPanel();
+        JLabel lab1 = new JLabel();
+        lab1.setText("Messages");
+        tab2.add(lab1);
+        tab3 = new JPanel();
+        JLabel lab2 = new JLabel();
+        lab2.setText("Store");
+        tab2.add(lab2);
+        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.setBackground(Color.DARK_GRAY);
+        tabbedPane.addTab("Infected", tab1);
+        tabbedPane.addTab("Messages", tab2);
+        tabbedPane.addTab("Store", tab3);
+        tabbedPane.setBounds(780, 80, 350, 550);
+
+        add(tabbedPane);
         add(panelMap);
         add(panelTop);
+
         setTitle("Koronavirus Anti Plague");
         setSize(1200, 680);
         setLocationRelativeTo(null);
@@ -52,7 +134,7 @@ public class GameView extends JFrame {
         panelTop.setLayout(new FlowLayout());
         panelTop.setBackground(new Color(666699));
 
-        JLabel lDays = new JLabel("Day of Epidemics:");
+        lDays = new JLabel("Day of Epidemics:" + Main.dayEpidemic);
         lDays.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         lDays.setForeground(Color.white);
         JLabel lCases = new JLabel("Total Cases:");
@@ -71,8 +153,10 @@ public class GameView extends JFrame {
         lmask.setText(String.valueOf(Main.heathPoints));
         lmask.setForeground(Color.white);
         JLabel lStar = new JLabel(new ImageIcon("star.png"));
-        lStar.setText(String.valueOf(Main.Points));
+        lStar.setText(String.valueOf(Main.points));
         lStar.setForeground(Color.white);
+
+
         backToMenu = new JButton("Back to menu");
         backToMenu.setForeground(Color.white);
         backToMenu.setFont(new Font(null, Font.BOLD, 16));
