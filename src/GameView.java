@@ -1,15 +1,10 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.jar.JarEntry;
+import java.awt.event.KeyEvent;
 
-public class GameView extends JFrame {
+public class GameView extends JFrame implements Runnable{
     JPanel panelTop;
-    static JButton backToMenu;
+    JButton backToMenu;
     JButton btnPoland;
     JButton Russia;
     JButton England;
@@ -28,25 +23,31 @@ public class GameView extends JFrame {
     Turkey tu;
     England en;
     France fr;
+
     JPanel tab1;
     JPanel tab2;
     JPanel tab3;
-    JLabel lab;
+    JLabel population;
+    JLabel cases;
+    JLabel infected;
     static JLabel lDays;
-    public GameView() {
-        Poland pl = new Poland();
-        Norwey no = new Norwey();
-        Romania ro = new Romania();
-        Russia ru = new Russia();
-        Spain sp = new Spain();
-        Sweden sw = new Sweden();
-        Turkey tu = new Turkey();
-        England en = new England();
-        France fr = new France();
+    static JLabel lWorldInfected;
 
-        pl.setCases(0);
+    public GameView() {
+         pl = new Poland();
+         no = new Norwey();
+         ro = new Romania();
+         ru = new Russia();
+         sp = new Spain();
+         sw = new Sweden();
+         tu = new Turkey();
+         en = new England();
+         fr = new France();
+
+        pl.setCases(2);
         pl.setInfected(0);
         pl.setPopulation(37846611);
+
 
         no.setCases(0);
         no.setInfected(0);
@@ -58,12 +59,11 @@ public class GameView extends JFrame {
 
         sp.setCases(0);
         sp.setInfected(0);
-        sp.setPopulation(145934462);
+        sp.setPopulation(46754778);
 
         sw.setCases(0);
         sw.setInfected(0);
         sw.setPopulation(10099265);
-
 
         tu.setCases(0);
         tu.setInfected(0);
@@ -77,6 +77,10 @@ public class GameView extends JFrame {
         fr.setCases(0);
         fr.setInfected(0);
         fr.setPopulation(65273511);
+
+        ru.setCases(0);
+        ru.setInfected(0);
+        ru.setPopulation(145934462);
 
 
         panelTop = new JPanel();
@@ -99,10 +103,18 @@ public class GameView extends JFrame {
 
 
         tab1 = new JPanel();
+        tab1.setLayout(new GridLayout(6,1));
         tab1.setBackground(Color.orange);
-        lab = new JLabel();
-        lab.setText("Infected");
-        tab1.add(lab);
+        population = new JLabel();
+        cases = new JLabel();
+        infected = new JLabel();
+        population.setBounds(0,10,200,10);
+        cases.setBounds(0,10,200,10);
+        infected.setBounds(0,30,200,10);
+        tab1.add(population);
+        tab1.add(infected);
+        tab1.add(cases);
+
         tab2 = new JPanel();
         JLabel lab1 = new JLabel();
         lab1.setText("Messages");
@@ -140,7 +152,7 @@ public class GameView extends JFrame {
         JLabel lCases = new JLabel("Total Cases:");
         lCases.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         lCases.setForeground(Color.white);
-        JLabel lWorldInfected = new JLabel("% of the world infected:");
+        lWorldInfected = new JLabel("% of the world infected:" + Main.heathPoints);
         lWorldInfected.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         lWorldInfected.setForeground(Color.white);
         JLabel lVaccineProgres = new JLabel("Vaccine progress:");
@@ -237,4 +249,20 @@ public class GameView extends JFrame {
     }
 
 
+    @Override
+    public void run() {
+        for(;;){
+            Main.dayEpidemic = Main.dayEpidemic +1;
+            Main.heathPoints = Main.Infection + (int) (Main.dayEpidemic * Math.floor(Math.random()*100));
+            System.out.println(Main.dayEpidemic);
+            System.out.println("heath" +Main.Infection);
+            try {
+                GameView.lDays.setText(String.valueOf(" DayOfEpidemy: "+ Main.dayEpidemic));
+                GameView.lWorldInfected.setText(String.valueOf(Main.heathPoints));
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

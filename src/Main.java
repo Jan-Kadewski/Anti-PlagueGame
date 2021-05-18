@@ -6,6 +6,7 @@ public class Main {
     public static int points;
     public static int heathPoints;
     public static int dayEpidemic;
+    public static int Infection;
 
 
 

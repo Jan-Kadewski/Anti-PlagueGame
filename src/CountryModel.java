@@ -1,32 +1,30 @@
 import javax.swing.*;
 
-public abstract class CountryModel {
-    public int population;
-    public int cases;
-    public int infected;
-    public ImageIcon image;
-    public int getPopulation() {
-        return population;
-    }
+  public interface CountryModel {
+    public int getPopulation();
+//            return population;
 
-    public void setPopulation(int population) {
-        this.population = population;
-    }
 
-    public int getCases() {
-        return cases;
-    }
+    public void setPopulation(int population);
+//            this.population = population;
 
-    public void setCases(int cases) {
-        this.cases = cases;
-    }
 
-    public int getInfected() {
-        return infected;
-    }
+    public int getCases();
+    //  return cases;
 
-    public void setInfected(int infected) {
-        this.infected = infected;
-    }
+
+    public void setCases(int cases);
+    //    this.cases = cases;
+
+
+    public int getInfected();
+    //    return infected;
+
+
+    public void setInfected(int infected);
+    //  this.infected = infected;
+
 
 }
+
+
