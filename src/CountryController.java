@@ -1,7 +1,9 @@
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CountryController {
+public class CountryController implements Runnable{
     CountryView countryView;
 
     public CountryController() {
@@ -79,9 +81,19 @@ public class CountryController {
                 GameView.cases.setText(String.valueOf("Cases:" + countryView.france.getCases()));
             }
         });
-
-
+    //TESTTTTTTT
+        countryView.mystoreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(e.getSource() == countryView.mystoreButton){
+                    countryView.mystoreButton.setText("bought");
+                }
+            }
+        });
     }
 
+    @Override
+    public void run() {
 
+    }
 }

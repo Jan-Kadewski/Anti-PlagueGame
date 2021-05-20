@@ -1,8 +1,11 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class GameView extends JFrame {
+
     JPanel panelTop;
     JButton backToMenu;
     JPanel tab1;
@@ -18,9 +21,11 @@ public class GameView extends JFrame {
     JLabel lCureProgress;
     JLabel lmask;
     JLabel lStar;
+    CountryController countryController;
+//    Image img;
 
     public GameView() {
-        CountryController countryController = new CountryController();
+        countryController = new CountryController();
         MainMenuController.timerPauser = true;
         panelTop = new JPanel();
         createTopMenu();
@@ -29,9 +34,8 @@ public class GameView extends JFrame {
         panelMap.setBounds(20, 100, 700, 506);
         panelMap.setLayout(new BorderLayout());
         JLabel lmapImage = new JLabel(new ImageIcon("background.jpg"));
-
         panelMap.add(lmapImage);
-
+//        this.loadImage();
         getContentPane().add(countryController.countryView.poland.buttonCountry);
         getContentPane().add(countryController.countryView.norwey.buttonCountry);
         getContentPane().add(countryController.countryView.england.buttonCountry);
@@ -57,14 +61,19 @@ public class GameView extends JFrame {
         tab1.add(cases);
 
         tab2 = new JPanel();
+        tab2.setLayout(new GridLayout(9,1));
         JLabel lab1 = new JLabel();
         lab1.setText("Messages");
         tab2.add(lab1);
 
+
         tab3 = new JPanel();
+        for(JPanel l: CountryView.storeLabels){
+            tab3.add(l);
+        }
+        tab3.setLayout(new GridLayout(10,1));
         JLabel lab2 = new JLabel();
         lab2.setText("Store");
-        tab2.add(lab2);
 
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.setBackground(Color.DARK_GRAY);
@@ -84,6 +93,22 @@ public class GameView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
+//
+//    public void loadImage(){
+//        File file = new File("plane.png");
+//        try{
+//            img = ImageIO.read(file);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @Override
+//    public void paint(Graphics g) {
+//        super.paint(g);
+//
+//        g.drawImage(img,200,200,null);
+//    }
 
     public void createTopMenu() {
         panelTop.setLayout(new FlowLayout());
@@ -115,8 +140,8 @@ public class GameView extends JFrame {
 
         lStar = new JLabel(new ImageIcon("star.png"));
         lStar.setText(String.valueOf(Main.points));
-        lStar.setForeground(Color.white);
 
+        lStar.setForeground(Color.white);
 
         backToMenu = new JButton("Back to menu");
         backToMenu.setForeground(Color.white);
@@ -133,6 +158,8 @@ public class GameView extends JFrame {
         panelTop.add(lCureProgress);
         panelTop.add(lmask);
         panelTop.add(lStar);
+
+
     }
 
 
